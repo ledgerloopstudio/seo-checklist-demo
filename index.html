@@ -465,14 +465,14 @@ function viewDash(){
   var checklistCard = el("div", { class:"card" }, [
     el("h2", {}, ["Checklist progress by category"]),
     el("p", { class:"hint" }, ["Technical, on-page, off-page and local SEO tracked separately."]),
-    breakdown.map(function(b){
+    el("div", {}, breakdown.map(function(b){
       var pctW = b.total ? Math.max(4, Math.round((b.done/b.total)*100)) : 4;
       return el("div", { class:"barrow" }, [
         el("div",{class:"lbl"},[b.category]),
         el("div",{class:"track"},[el("div",{class:"fill", style:"width:"+pctW+"%"},[])]),
         el("div",{class:"amt"},[b.done+"/"+b.total])
       ]);
-    })
+    }))
   ]);
 
   var upcomingCard = el("div", { class:"card" }, [
