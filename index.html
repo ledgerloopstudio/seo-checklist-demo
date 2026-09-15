@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Etsy &amp; Website SEO Checklist Planner</title>
+<style>
+:root{
+  --bg:#F4F6F7; --card:#FFFFFF; --ink:#1B2A36; --ink2:#31485A; --grey:#5A6B78;
+  --rule:#E2E6E9; --soft:#F7F8F9; --acc:#0F7B6C; --accL:#E6F2F0;
+  --ok:#12B76A; --warn:#B9770E; --bad:#C0392B; --navy:#2E5C8A;
+}
+[data-dark="1"]{
+  --bg:#121A1E; --card:#182226; --ink:#EDEFEF; --ink2:#C7D0D3; --grey:#8FA0A7;
+  --rule:#28343A; --soft:#1B262B; --accL:#173832;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);}
+.app{max-width:1200px;margin:0 auto;}
+header.top{background:var(--card);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:10;}
+.toprow{display:flex;align-items:center;gap:20px;padding:14px 22px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:bold;font-size:19px;}
+.brand .box{width:22px;height:22px;border:3px solid var(--acc);border-radius:6px;}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;}
+nav.tabs button{background:none;border:none;padding:9px 13px;border-radius:8px;font-size:14px;font-weight:bold;color:var(--grey);cursor:pointer;}
+nav.tabs button.active{background:var(--accL);color:var(--acc);}
+.spacer{flex:1;}
+.iconbtn{background:none;border:1px solid var(--rule);border-radius:8px;padding:8px 12px;cursor:pointer;color:var(--ink2);font-size:13px;font-weight:bold;}
+main{padding:22px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr;}.grid3{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px;}
+.kpi .label{font-size:12px;font-weight:bold;color:var(--grey);letter-spacing:.03em;text-transform:uppercase;}
+.kpi .val{font-size:30px;font-weight:bold;margin:6px 0 2px;}
+.kpi .sub{font-size:12px;color:var(--grey);}
+h2{font-size:19px;margin:0 0 4px;}
+p.hint{font-size:13px;color:var(--grey);margin:0 0 14px;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+th{text-align:left;font-size:11px;text-transform:uppercase;color:var(--grey);padding:8px 10px;border-bottom:1px solid var(--rule);}
+td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:bold;}
+.pill.ok{background:var(--accL);color:var(--acc);}
+.pill.low{background:#FCE8CB;color:var(--warn);}
+.pill.out{background:#F5D9D6;color:var(--bad);}
+.pill.archived{background:var(--soft);color:var(--grey);}
+.btn{background:var(--acc);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-weight:bold;font-size:14px;cursor:pointer;}
+.btn.ghost{background:none;border:1px solid var(--rule);color:var(--ink2);}
+.btn.small{padding:6px 10px;font-size:12px;border-radius:6px;}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+input,select,textarea{font-family:inherit;font-size:14px;padding:9px 10px;border:1px solid var(--rule);border-radius:7px;background:var(--soft);color:var(--ink);width:100%;}
+label{font-size:12px;font-weight:bold;color:var(--grey);display:block;margin-bottom:4px;}
+.field{margin-bottom:12px;}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.modal-bg{position:fixed;inset:0;background:rgba(10,15,18,.5);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow:auto;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--card);border-radius:12px;padding:24px;max-width:560px;width:100%;}
+.modal h3{margin-top:0;}
+.list-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);}
+.list-item:last-child{border-bottom:none;}
+.empty{color:var(--grey);font-size:13px;padding:20px 0;text-align:center;}
+footer.note{font-size:12px;color:var(--grey);text-align:center;padding:20px;}
+.chipbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.chip{padding:6px 12px;border-radius:20px;font-size:13px;font-weight:bold;border:1px solid var(--rule);background:var(--soft);color:var(--ink2);cursor:pointer;}
+.chip.active{background:var(--acc);color:#fff;border-color:var(--acc);}
+.barrow{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.barrow .lbl{width:120px;font-size:12px;color:var(--grey);flex-shrink:0;}
+.barrow .track{flex:1;height:16px;background:var(--soft);border-radius:5px;overflow:hidden;}
+.barrow .fill{height:100%;background:var(--navy);}
+.barrow .amt{width:70px;text-align:right;font-size:12px;font-weight:bold;flex-shrink:0;}
+.checkrow{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);}
+.checkrow:last-child{border-bottom:none;}
+.checkrow input[type=checkbox]{width:auto;margin-top:3px;}
+.checkrow.done label{text-decoration:line-through;color:var(--grey);}
+.note-box{background:var(--soft);border:1px dashed var(--rule);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--grey);margin-top:10px;}
+.demo-banner{position:sticky;top:0;z-index:9999;background:#B9770E;color:#fff;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;text-align:center;padding:9px 14px}
+.demo-banner a{color:#fff;text-decoration:underline}
+.demo-banner .x{position:absolute;right:10px;top:6px;background:none;border:none;color:#fff;font:inherit;cursor:pointer;opacity:.85;padding:4px 8px}
+.demo-banner .x:hover{opacity:1}
+</style>
+</head>
+<body>
+<div class="demo-banner" id="demoBanner">DEMO — example data, add up to 15 of your own keywords and see whether it thinks the way you do. Nothing is saved permanently and it can reset any time. <a href="https://www.etsy.com/shop/LedgerLoopStudio" target="_blank" rel="noopener">Buy the full version</a> for your own unlimited, permanent copy.<button class="x" onclick="document.getElementById('demoBanner').style.display='none'" aria-label="Dismiss">✕</button></div>
+<div class="app" id="app"></div>
+
+<script id="engine">
+/* ===================== PURE FUNCTIONS (unit-testable) ===================== */
+function pad2(n){ return n<10 ? "0"+n : ""+n; }
+function toISO(d){ return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate()); }
+function parseISO(s){
+  if(!s) return null;
+  var p = String(s).split("-");
+  if(p.length!==3) return null;
+  var y=parseInt(p[0],10), m=parseInt(p[1],10), d=parseInt(p[2],10);
+  if(!y||!m||!d) return null;
+  return new Date(y, m-1, d);
+}
+function todayISO(){ return toISO(new Date()); }
+function monthKey(iso){ return iso ? iso.slice(0,7) : ""; }
+function yearOf(iso){ return iso ? iso.slice(0,4) : ""; }
+function uid(){ return "s" + Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
+function round1(n){ return Math.round((Number(n)||0)*10)/10; }
+function daysBetween(aISO, bISO){
+  var a = parseISO(aISO), b = parseISO(bISO);
+  if(!a || !b) return null;
+  return Math.round((b-a)/86400000);
+}
+
+/* ---- keywords ---- */
+function keywordById(keywords, id){
+  return (keywords||[]).filter(function(k){ return k.id===id; })[0] || null;
+}
+function keywordLabel(keywords, id){
+  var k = keywordById(keywords, id);
+  return k ? k.keyword : "(deleted keyword)";
+}
+function keywordsByStatus(keywords, status){
+  return (keywords||[]).filter(function(k){ return k.status===status; });
+}
+function keywordsByPriority(keywords, priority){
+  return (keywords||[]).filter(function(k){ return k.priority===priority; });
+}
+
+/* ---- rank tracker ---- */
+function rankEntriesForKeyword(rankEntries, keywordId){
+  return (rankEntries||[]).filter(function(r){ return r.keywordId===keywordId; })
+    .slice().sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+}
+function latestRank(rankEntries, keywordId){
+  var rows = rankEntriesForKeyword(rankEntries, keywordId);
+  return rows.length ? rows[rows.length-1] : null;
+}
+function bestRank(rankEntries, keywordId){
+  var rows = rankEntriesForKeyword(rankEntries, keywordId);
+  if(!rows.length) return null;
+  return rows.reduce(function(best,r){ return (best===null || r.rank<best) ? r.rank : best; }, null);
+}
+function rankChange(rankEntries, keywordId){
+  var rows = rankEntriesForKeyword(rankEntries, keywordId);
+  if(rows.length<2) return null;
+  var first = rows[0].rank, last = rows[rows.length-1].rank;
+  return first - last; /* positive = improved (rank number went down) */
+}
+function avgLatestRank(keywords, rankEntries){
+  var vals = (keywords||[]).map(function(k){
+    var r = latestRank(rankEntries, k.id);
+    return r ? r.rank : null;
+  }).filter(function(v){ return v!==null; });
+  if(!vals.length) return null;
+  return round1(vals.reduce(function(a,b){ return a+b; },0)/vals.length);
+}
+function keywordsTrackedCount(keywords){ return (keywords||[]).length; }
+function keywordsWithRankData(keywords, rankEntries){
+  return (keywords||[]).filter(function(k){ return latestRank(rankEntries,k.id) !== null; }).length;
+}
+
+/* ---- checklist ---- */
+var CHECKLIST_CATEGORIES = ["Technical","On-Page","Off-Page","Local"];
+function checklistByCategory(checklist, category){
+  return (checklist||[]).filter(function(c){ return c.category===category; });
+}
+function checklistCompletionPct(checklist){
+  var items = checklist||[];
+  if(!items.length) return 0;
+  var done = items.filter(function(c){ return c.done; }).length;
+  return round1((done/items.length)*100);
+}
+function checklistCategoryBreakdown(checklist){
+  return CHECKLIST_CATEGORIES.map(function(cat){
+    var items = checklistByCategory(checklist, cat);
+    var done = items.filter(function(c){ return c.done; }).length;
+    return { category: cat, total: items.length, done: done,
+             pct: items.length ? round1((done/items.length)*100) : 0 };
+  });
+}
+function checklistRemaining(checklist){
+  return (checklist||[]).filter(function(c){ return !c.done; });
+}
+
+/* ---- content calendar ---- */
+function contentByStatus(content, status){
+  return (content||[]).filter(function(c){ return c.status===status; });
+}
+function contentCountByStatus(content){
+  var statuses = ["idea","draft","published"];
+  var out = {};
+  statuses.forEach(function(s){ out[s] = contentByStatus(content, s).length; });
+  return out;
+}
+function upcomingContent(content, fromISO){
+  return (content||[])
+    .filter(function(c){ return c.status !== "published" && c.publishDate && c.publishDate >= fromISO; })
+    .slice().sort(function(a,b){ return a.publishDate < b.publishDate ? -1 : 1; });
+}
+function contentPublishedInMonth(content, mKey){
+  return (content||[]).filter(function(c){
+    return c.status==="published" && monthKey(c.publishDate)===mKey;
+  });
+}
+
+/* ---- backlinks ---- */
+function liveBacklinks(backlinks){
+  return (backlinks||[]).filter(function(b){ return b.status==="live"; });
+}
+function lostBacklinks(backlinks){
+  return (backlinks||[]).filter(function(b){ return b.status==="lost"; });
+}
+function backlinksInMonth(backlinks, mKey){
+  return (backlinks||[]).filter(function(b){ return monthKey(b.dateAcquired)===mKey; });
+}
+function dofollowCount(backlinks){
+  return (backlinks||[]).filter(function(b){ return b.type==="dofollow" && b.status==="live"; }).length;
+}
+function backlinksByDomain(backlinks){
+  var byDomain = {};
+  (backlinks||[]).forEach(function(b){
+    var d = b.sourceDomain || "(unknown)";
+    byDomain[d] = (byDomain[d]||0) + 1;
+  });
+  return Object.keys(byDomain).map(function(d){ return { domain: d, count: byDomain[d] }; })
+    .sort(function(a,b){ return b.count - a.count; });
+}
+
+/* ---- competitors ---- */
+function competitorsForKeyword(competitors, keywordId){
+  return (competitors||[]).filter(function(c){ return c.keywordId===keywordId; });
+}
+function competitorsBeatingUs(competitors, keywords, rankEntries){
+  return (competitors||[]).filter(function(c){
+    var ours = latestRank(rankEntries, c.keywordId);
+    return ours && c.theirRank && c.theirRank < ours.rank;
+  });
+}
+
+/* ---- monthly report ---- */
+function monthlyReport(state, mKey){
+  var keywords = state.keywords || [], rankEntries = state.rankEntries || [],
+      content = state.content || [], backlinks = state.backlinks || [],
+      checklist = state.checklist || [];
+  return {
+    month: mKey,
+    keywordsTracked: keywordsTrackedCount(keywords),
+    avgRank: avgLatestRank(keywords, rankEntries),
+    checklistCompletionPct: checklistCompletionPct(checklist),
+    contentPublished: contentPublishedInMonth(content, mKey).length,
+    backlinksAcquired: backlinksInMonth(backlinks, mKey).length,
+    liveBacklinks: liveBacklinks(backlinks).length
+  };
+}
+function monthlyTrend(state, months){
+  /* months: array of "YYYY-MM" strings, oldest first */
+  return (months||[]).map(function(mKey){
+    var r = monthlyReport(state, mKey);
+    return { month: mKey, contentPublished: r.contentPublished, backlinksAcquired: r.backlinksAcquired };
+  });
+}
+
+/* ---- CSV export ---- */
+function toCSV(keywords, rankEntries){
+  var rows = [["Keyword","Target page","Category","Priority","Status","Volume","Difficulty","Best rank","Latest rank","Rank change","Notes"]];
+  (keywords||[]).forEach(function(k){
+    var best = bestRank(rankEntries, k.id);
+    var latest = latestRank(rankEntries, k.id);
+    var change = rankChange(rankEntries, k.id);
+    rows.push([
+      k.keyword, k.targetPage||"", k.category||"", k.priority||"", k.status||"",
+      k.volume||"", k.difficulty||"",
+      best===null ? "" : best,
+      latest ? latest.rank : "",
+      change===null ? "" : change,
+      k.notes||""
+    ]);
+  });
+  return rows.map(function(r){
+    return r.map(function(c){
+      var str = String(c);
+      return /[",\n]/.test(str) ? '"'+str.replace(/"/g,'""')+'"' : str;
+    }).join(",");
+  }).join("\n");
+}
+
+if(typeof module !== "undefined" && module.exports){
+  module.exports = {
+    pad2, toISO, parseISO, todayISO, monthKey, yearOf, uid, round1, daysBetween,
+    keywordById, keywordLabel, keywordsByStatus, keywordsByPriority,
+    rankEntriesForKeyword, latestRank, bestRank, rankChange, avgLatestRank,
+    keywordsTrackedCount, keywordsWithRankData,
+    CHECKLIST_CATEGORIES, checklistByCategory, checklistCompletionPct,
+    checklistCategoryBreakdown, checklistRemaining,
+    contentByStatus, contentCountByStatus, upcomingContent, contentPublishedInMonth,
+    liveBacklinks, lostBacklinks, backlinksInMonth, dofollowCount, backlinksByDomain,
+    competitorsForKeyword, competitorsBeatingUs,
+    monthlyReport, monthlyTrend, toCSV
+  };
+}
+</script>
+
+<script id="uiapp">
+(function(){
+"use strict";
+var KEY = "llsSEOChecklist_v1";
+/* ---- demo-only limit: this block exists only in the public try-it demo, never in the sold product ---- */
+var DEMO_MODE = true, DEMO_KW_LIMIT = 18; /* 3 seeded + 15 room to try adding your own */
+function demoLimitReached(){
+  if(!DEMO_MODE) return false;
+  if(!STATE || !STATE.keywords || STATE.keywords.length < DEMO_KW_LIMIT) return false;
+  alert("You've reached the "+DEMO_KW_LIMIT+"-keyword demo limit.\n\nThis is just a preview — buy the full version for unlimited keywords, all features unlocked, and your own permanent copy.");
+  return true;
+}
+
+function load(){
+  try{
+    var raw = localStorage.getItem(KEY);
+    if(!raw) return null;
+    var st = JSON.parse(raw);
+    if(!st || !st.keywords) return null;
+    return st;
+  }catch(e){ return null; }
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(STATE)); }catch(e){} }
+
+function seedChecklist(){
+  var mk = function(cat,text){ return { id: uid(), category: cat, text: text, done: false, custom: false }; };
+  return [
+    mk("Technical","Site is indexable — robots.txt does not block important pages"),
+    mk("Technical","XML sitemap submitted in Google Search Console"),
+    mk("Technical","Site loads in under 3 seconds on mobile"),
+    mk("Technical","HTTPS enabled site-wide, no mixed-content warnings"),
+    mk("Technical","Broken links and 404s checked and fixed"),
+    mk("Technical","Core pages are mobile-friendly (Google Mobile-Friendly Test)"),
+    mk("On-Page","Every page has one clear target keyword"),
+    mk("On-Page","Title tags include the target keyword and stay under 60 characters"),
+    mk("On-Page","Meta descriptions written for every indexed page"),
+    mk("On-Page","H1 present once per page and matches page intent"),
+    mk("On-Page","Images have descriptive alt text"),
+    mk("On-Page","Internal links point to relevant related pages"),
+    mk("Off-Page","Top 5 competitor backlink profiles reviewed"),
+    mk("Off-Page","Outreach list built for realistic link targets"),
+    mk("Off-Page","Existing backlinks checked for lost/broken links"),
+    mk("Off-Page","Shop or brand listed on relevant directories"),
+    mk("Local","Google Business Profile claimed and fully filled in"),
+    mk("Local","NAP (name/address/phone) consistent across all listings"),
+    mk("Local","Recent reviews requested from happy customers"),
+    mk("Local","Local citations checked on at least 3 directories")
+  ];
+}
+
+function seedSample(){
+  var today = todayISO();
+  var t = parseISO(today);
+  function iso(offsetDays){ var d = new Date(t.getFullYear(), t.getMonth(), t.getDate()+offsetDays); return toISO(d); }
+  var kw1 = uid(), kw2 = uid(), kw3 = uid();
+  var keywords = [
+    { id: kw1, keyword:"reseller inventory tracker", targetPage:"/reseller-tracker", category:"Product", priority:"High", status:"Mapped", volume:888, difficulty:1, notes:"Flagship product page" },
+    { id: kw2, keyword:"mileage tax deduction tracker", targetPage:"/mileage-tracker", category:"Product", priority:"High", status:"Writing", volume:1043, difficulty:9, notes:"" },
+    { id: kw3, keyword:"etsy seo checklist", targetPage:"/blog/etsy-seo-checklist", category:"Blog", priority:"Medium", status:"Researching", volume:4026, difficulty:1, notes:"Supports this product's own listing" }
+  ];
+  var rankEntries = [
+    { id: uid(), keywordId: kw1, date: iso(-30), rank: 48 },
+    { id: uid(), keywordId: kw1, date: iso(-14), rank: 32 },
+    { id: uid(), keywordId: kw1, date: iso(-1),  rank: 21 },
+    { id: uid(), keywordId: kw2, date: iso(-20), rank: 55 },
+    { id: uid(), keywordId: kw2, date: iso(-2),  rank: 40 }
+  ];
+  var content = [
+    { id: uid(), title:"How to price a reseller inventory system", keywordId: kw1, status:"published", publishDate: iso(-25), notes:"" },
+    { id: uid(), title:"Mileage deduction rules by country", keywordId: kw2, status:"draft", publishDate: iso(7), notes:"" },
+    { id: uid(), title:"Etsy SEO checklist walkthrough", keywordId: kw3, status:"idea", publishDate: iso(21), notes:"" }
+  ];
+  var backlinks = [
+    { id: uid(), sourceDomain:"smallbiztools.example", targetUrl:"/reseller-tracker", anchorText:"reseller inventory tracker", dateAcquired: iso(-18), type:"dofollow", status:"live" },
+    { id: uid(), sourceDomain:"directory.example", targetUrl:"/", anchorText:"LedgerLoopStudio", dateAcquired: iso(-40), type:"nofollow", status:"live" }
+  ];
+  var competitors = [
+    { id: uid(), domain:"ozkmtngoods.example", keywordId: kw1, theirRank: 8, notes:"Bestseller, 135 reviews, no mileage integration" }
+  ];
+  return {
+    settings: { dark:false },
+    keywords: keywords, rankEntries: rankEntries, checklist: seedChecklist(),
+    content: content, backlinks: backlinks, competitors: competitors
+  };
+}
+
+var STATE = load() || seedSample();
+if(!load()) save();
+
+var VIEW = "dash";
+var MODAL_OPEN = false;
+var EDIT_ID = null;
+var CHECKLIST_FILTER = "All";
+
+function el(tag, attrs, kids){
+  var e = document.createElement(tag);
+  attrs = attrs || {};
+  Object.keys(attrs).forEach(function(k){
+    if(k === "class") e.className = attrs[k];
+    else if(k === "html") e.innerHTML = attrs[k];
+    else if(k.slice(0,2) === "on") e.addEventListener(k.slice(2), attrs[k]);
+    else if(attrs[k] !== undefined) e.setAttribute(k, attrs[k]);
+  });
+  (kids||[]).forEach(function(k){ if(k) e.appendChild(typeof k === "string" ? document.createTextNode(k) : k); });
+  return e;
+}
+
+var TABS = [
+  ["dash","Dashboard"], ["keywords","Keywords"], ["ranks","Rank Tracker"],
+  ["checklist","Checklist"], ["content","Content Calendar"], ["backlinks","Backlinks"],
+  ["competitors","Competitors"], ["reports","Reports"]
+];
+
+function render(){
+  document.body.setAttribute("data-dark", STATE.settings.dark ? "1" : "0");
+  var app = document.getElementById("app");
+  app.innerHTML = "";
+  app.appendChild(renderHeader());
+  var main = el("main", {}, []);
+  if(VIEW === "dash") main.appendChild(viewDash());
+  else if(VIEW === "keywords") main.appendChild(viewKeywords());
+  else if(VIEW === "ranks") main.appendChild(viewRanks());
+  else if(VIEW === "checklist") main.appendChild(viewChecklist());
+  else if(VIEW === "content") main.appendChild(viewContent());
+  else if(VIEW === "backlinks") main.appendChild(viewBacklinks());
+  else if(VIEW === "competitors") main.appendChild(viewCompetitors());
+  else if(VIEW === "reports") main.appendChild(viewReports());
+  app.appendChild(main);
+  app.appendChild(renderFooter());
+  showModal();
+}
+
+function renderHeader(){
+  var nav = el("nav", { class:"tabs" }, TABS.map(function(tb){
+    return el("button", { class:(VIEW===tb[0]?"active ":"")+"", onclick:function(){ VIEW = tb[0]; render(); } }, [tb[1]]);
+  }));
+  return el("header", { class:"top" }, [
+    el("div", { class:"toprow" }, [
+      el("div", { class:"brand" }, [ el("span",{class:"box"},[]), "SEO Checklist" ]),
+      nav,
+      el("div", { class:"spacer" }, []),
+      el("button", { class:"iconbtn", onclick:function(){ STATE.settings.dark = !STATE.settings.dark; save(); render(); } }, [ STATE.settings.dark ? "Light mode" : "Dark mode" ])
+    ])
+  ]);
+}
+function renderFooter(){
+  return el("footer", { class:"note" }, ["LedgerLoopStudio — Etsy & Website SEO Checklist Planner. Your data stays in this browser."]);
+}
+
+/* ---------------------------------------------------------------- DASHBOARD */
+function viewDash(){
+  var pct = checklistCompletionPct(STATE.checklist);
+  var avgRank = avgLatestRank(STATE.keywords, STATE.rankEntries);
+  var tracked = keywordsTrackedCount(STATE.keywords);
+  var upcoming = upcomingContent(STATE.content, todayISO());
+  var liveBl = liveBacklinks(STATE.backlinks).length;
+
+  var kpis = el("div", { class:"grid4" }, [
+    kpi("Keywords tracked", String(tracked), keywordsWithRankData(STATE.keywords, STATE.rankEntries)+" with rank data"),
+    kpi("Avg. current rank", avgRank===null?"—":"#"+avgRank, "across tracked keywords"),
+    kpi("Checklist complete", pct+"%", STATE.checklist.length+" total items"),
+    kpi("Live backlinks", String(liveBl), lostBacklinks(STATE.backlinks).length+" marked lost")
+  ]);
+
+  var breakdown = checklistCategoryBreakdown(STATE.checklist);
+  var checklistCard = el("div", { class:"card" }, [
+    el("h2", {}, ["Checklist progress by category"]),
+    el("p", { class:"hint" }, ["Technical, on-page, off-page and local SEO tracked separately."]),
+    breakdown.map(function(b){
+      var pctW = b.total ? Math.max(4, Math.round((b.done/b.total)*100)) : 4;
+      return el("div", { class:"barrow" }, [
+        el("div",{class:"lbl"},[b.category]),
+        el("div",{class:"track"},[el("div",{class:"fill", style:"width:"+pctW+"%"},[])]),
+        el("div",{class:"amt"},[b.done+"/"+b.total])
+      ]);
+    })
+  ]);
+
+  var upcomingCard = el("div", { class:"card" }, [
+    el("h2", {}, ["Upcoming content"]),
+    el("p", { class:"hint" }, ["Ideas and drafts with a publish date still ahead."]),
+    upcoming.length ? el("table", {}, [
+      el("thead", {}, [el("tr", {}, [th("Title"),th("Target keyword"),th("Status"),th("Publish date")])]),
+      el("tbody", {}, upcoming.slice(0,6).map(function(c){
+        return el("tr", {}, [td(c.title), td(keywordLabel(STATE.keywords, c.keywordId)), td(c.status), td(c.publishDate)]);
+      }))
+    ]) : el("div", { class:"empty" }, ["Nothing scheduled. Add a piece on the Content Calendar tab."])
+  ]);
+
+  var remaining = checklistRemaining(STATE.checklist).slice(0,5);
+  var remainingCard = el("div", { class:"card" }, [
+    el("h2", {}, ["Next on the checklist"]),
+    remaining.length ? el("div", {}, remaining.map(function(c){
+      return el("div", { class:"list-item" }, [el("span",{},[c.category+" — "+c.text]), el("span",{class:"pill low"},["open"])]);
+    })) : el("div", { class:"empty" }, ["Every checklist item is complete."])
+  ]);
+
+  return el("div", {}, [kpis, el("div", { class:"grid2" }, [checklistCard, upcomingCard]), remainingCard]);
+}
+function kpi(label,val,sub){
+  return el("div", { class:"card kpi" }, [
+    el("div", { class:"label" }, [label]),
+    el("div", { class:"val" }, [val]),
+    el("div", { class:"sub" }, [sub])
+  ]);
+}
+function th(t){ return el("th", {}, [t]); }
+function td(t){ return el("td", {}, [t]); }
+
+/* ---------------------------------------------------------------- KEYWORDS */
+function viewKeywords(){
+  var keywords = STATE.keywords.slice();
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["Keyword planner"]), el("p",{class:"hint"},["Every keyword you're targeting, mapped to a page, with priority and status."])]),
+      el("div", {}, [
+        el("button", { class:"btn ghost", onclick:function(){ downloadCSV(); } }, ["Export CSV"]),
+        " ",
+        el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="keyword"; render(); } }, ["+ Add keyword"])
+      ])
+    ]),
+    keywords.length ? el("table", {}, [
+      el("thead", {}, [el("tr", {}, [th("Keyword"),th("Target page"),th("Priority"),th("Status"),th("Best rank"),th("Latest rank"),th("")])]),
+      el("tbody", {}, keywords.map(function(k){
+        var best = bestRank(STATE.rankEntries, k.id);
+        var latest = latestRank(STATE.rankEntries, k.id);
+        return el("tr", {}, [
+          td(k.keyword), td(k.targetPage||"—"),
+          el("td",{},[el("span",{class:"pill "+(k.priority==="High"?"out":k.priority==="Medium"?"low":"archived")},[k.priority])]),
+          td(k.status), td(best===null?"—":"#"+best), td(latest?"#"+latest.rank:"—"),
+          el("td",{},[el("button",{class:"btn ghost small", onclick:function(){ EDIT_ID=k.id; MODAL_OPEN="keyword"; render(); }},["Edit"])])
+        ]);
+      }))
+    ]) : el("div", { class:"empty" }, ["No keywords yet. Add your first target keyword."])
+  ]);
+}
+function downloadCSV(){
+  var csv = toCSV(STATE.keywords, STATE.rankEntries);
+  var blob = new Blob([csv], {type:"text/csv"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = "seo-keywords.csv";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ---------------------------------------------------------------- RANK TRACKER */
+function viewRanks(){
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["Rank tracker"]), el("p",{class:"hint"},["Log a rank check any time — watch positions move over time, per keyword."])]),
+      el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="rank"; render(); } }, ["+ Log rank check"])
+    ]),
+    STATE.keywords.length ? el("div", {}, STATE.keywords.map(function(k){
+      var rows = rankEntriesForKeyword(STATE.rankEntries, k.id);
+      var change = rankChange(STATE.rankEntries, k.id);
+      return el("div", { class:"card", style:"margin-bottom:14px;" }, [
+        el("div", { class:"row" }, [
+          el("div", {}, [el("h2",{},[k.keyword]), el("p",{class:"hint"},[k.targetPage||"no target page set"])]),
+          change===null ? null : el("span", { class:"pill "+(change>0?"ok":change<0?"out":"archived") }, [(change>0?"+":"")+change+" positions"])
+        ]),
+        rows.length ? el("table", {}, [
+          el("thead", {}, [el("tr", {}, [th("Date"),th("Rank"),th("")])]),
+          el("tbody", {}, rows.slice().reverse().map(function(r){
+            return el("tr", {}, [
+              td(r.date), td("#"+r.rank),
+              el("td",{},[el("button",{class:"btn ghost small", onclick:function(){ EDIT_ID=r.id; MODAL_OPEN="rank"; render(); }},["Edit"])])
+            ]);
+          }))
+        ]) : el("div", { class:"empty" }, ["No rank checks logged for this keyword yet."])
+      ]);
+    })) : el("div", { class:"empty" }, ["Add a keyword first on the Keywords tab."])
+  ]);
+}
+
+/* ---------------------------------------------------------------- CHECKLIST */
+function viewChecklist(){
+  var filtered = CHECKLIST_FILTER==="All" ? STATE.checklist : checklistByCategory(STATE.checklist, CHECKLIST_FILTER);
+  var pct = checklistCompletionPct(STATE.checklist);
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["SEO checklist"]), el("p",{class:"hint"},["Technical, on-page, off-page and local — "+pct+"% complete overall."])]),
+      el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="checkitem"; render(); } }, ["+ Add custom item"])
+    ]),
+    el("div", { class:"chipbar" }, ["All"].concat(CHECKLIST_CATEGORIES).map(function(cat){
+      return el("span", { class:"chip"+(CHECKLIST_FILTER===cat?" active":""), onclick:function(){ CHECKLIST_FILTER=cat; render(); } }, [cat]);
+    })),
+    el("div", { class:"card" }, filtered.length ? filtered.map(function(c){
+      return el("div", { class:"checkrow"+(c.done?" done":"") }, [
+        el("input", { type:"checkbox", checked: c.done?"checked":undefined, onchange:function(e){ c.done = e.target.checked; save(); render(); } }),
+        el("label", {}, [c.category+" — "+c.text + (c.custom ? "  ":"")]),
+        c.custom ? el("button", { class:"btn ghost small", onclick:function(){ STATE.checklist = STATE.checklist.filter(function(x){return x.id!==c.id;}); save(); render(); } }, ["Remove"]) : null
+      ]);
+    }) : [el("div",{class:"empty"},["Nothing in this category."])])
+  ]);
+}
+
+/* ---------------------------------------------------------------- CONTENT CALENDAR */
+function viewContent(){
+  var content = STATE.content.slice().sort(function(a,b){ return (a.publishDate||"") < (b.publishDate||"") ? -1 : 1; });
+  var counts = contentCountByStatus(STATE.content);
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["Content calendar"]), el("p",{class:"hint"},["Ideas: "+counts.idea+" · Drafts: "+counts.draft+" · Published: "+counts.published])]),
+      el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="content"; render(); } }, ["+ Add content"])
+    ]),
+    content.length ? el("table", {}, [
+      el("thead", {}, [el("tr", {}, [th("Title"),th("Target keyword"),th("Status"),th("Publish date"),th("")])]),
+      el("tbody", {}, content.map(function(c){
+        var pillClass = c.status==="published" ? "ok" : c.status==="draft" ? "low" : "archived";
+        return el("tr", {}, [
+          td(c.title), td(keywordLabel(STATE.keywords, c.keywordId)),
+          el("td",{},[el("span",{class:"pill "+pillClass},[c.status])]),
+          td(c.publishDate||"—"),
+          el("td",{},[el("button",{class:"btn ghost small", onclick:function(){ EDIT_ID=c.id; MODAL_OPEN="content"; render(); }},["Edit"])])
+        ]);
+      }))
+    ]) : el("div", { class:"empty" }, ["No content planned yet."])
+  ]);
+}
+
+/* ---------------------------------------------------------------- BACKLINKS */
+function viewBacklinks(){
+  var backlinks = STATE.backlinks.slice().sort(function(a,b){ return (a.dateAcquired||"") < (b.dateAcquired||"") ? 1 : -1; });
+  var domains = backlinksByDomain(STATE.backlinks).slice(0,5);
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["Backlinks"]), el("p",{class:"hint"},["Every link you've built or found, with follow type and status."])]),
+      el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="backlink"; render(); } }, ["+ Log backlink"])
+    ]),
+    el("div", { class:"grid3" }, [
+      kpi("Live backlinks", String(liveBacklinks(STATE.backlinks).length), "currently active"),
+      kpi("Dofollow (live)", String(dofollowCount(STATE.backlinks)), "passing authority"),
+      kpi("Lost", String(lostBacklinks(STATE.backlinks).length), "no longer live")
+    ]),
+    backlinks.length ? el("table", {}, [
+      el("thead", {}, [el("tr", {}, [th("Source domain"),th("Target"),th("Anchor text"),th("Date"),th("Type"),th("Status"),th("")])]),
+      el("tbody", {}, backlinks.map(function(b){
+        return el("tr", {}, [
+          td(b.sourceDomain), td(b.targetUrl), td(b.anchorText||"—"), td(b.dateAcquired||"—"),
+          td(b.type), el("td",{},[el("span",{class:"pill "+(b.status==="live"?"ok":"out")},[b.status])]),
+          el("td",{},[el("button",{class:"btn ghost small", onclick:function(){ EDIT_ID=b.id; MODAL_OPEN="backlink"; render(); }},["Edit"])])
+        ]);
+      }))
+    ]) : el("div", { class:"empty" }, ["No backlinks logged yet."])
+  ]);
+}
+
+/* ---------------------------------------------------------------- COMPETITORS */
+function viewCompetitors(){
+  var competitors = STATE.competitors.slice();
+  return el("div", {}, [
+    el("div", { class:"row" }, [
+      el("div", {}, [el("h2",{},["Competitors"]), el("p",{class:"hint"},["See what's outranking you, keyword by keyword."])]),
+      el("button", { class:"btn", onclick:function(){ EDIT_ID=null; MODAL_OPEN="competitor"; render(); } }, ["+ Add competitor"])
+    ]),
+    competitors.length ? el("table", {}, [
+      el("thead", {}, [el("tr", {}, [th("Competitor"),th("Keyword"),th("Their rank"),th("Our rank"),th("Notes"),th("")])]),
+      el("tbody", {}, competitors.map(function(c){
+        var ours = latestRank(STATE.rankEntries, c.keywordId);
+        var beating = ours && c.theirRank && c.theirRank < ours.rank;
+        return el("tr", {}, [
+          td(c.domain), td(keywordLabel(STATE.keywords, c.keywordId)),
+          el("td",{},[el("span",{class:"pill "+(beating?"out":"ok")},["#"+c.theirRank])]),
+          td(ours?"#"+ours.rank:"—"), td(c.notes||"—"),
+          el("td",{},[el("button",{class:"btn ghost small", onclick:function(){ EDIT_ID=c.id; MODAL_OPEN="competitor"; render(); }},["Edit"])])
+        ]);
+      }))
+    ]) : el("div", { class:"empty" }, ["No competitors logged yet."])
+  ]);
+}
+
+/* ---------------------------------------------------------------- REPORTS */
+function viewReports(){
+  var mKey = monthKey(todayISO());
+  var report = monthlyReport(STATE, mKey);
+  return el("div", {}, [
+    el("h2", {}, ["Monthly performance report"]),
+    el("p", { class:"hint" }, ["A snapshot for "+mKey+", built from every other tab."]),
+    el("div", { class:"grid4" }, [
+      kpi("Keywords tracked", String(report.keywordsTracked), ""),
+      kpi("Avg. rank", report.avgRank===null?"—":"#"+report.avgRank, "across tracked keywords"),
+      kpi("Checklist complete", report.checklistCompletionPct+"%", ""),
+      kpi("Backlinks this month", String(report.backlinksAcquired), report.liveBacklinks+" live total")
+    ]),
+    el("div", { class:"note-box" }, [
+      "Content published this month: " + report.contentPublished + ". Export the keyword CSV from the Keywords tab to hand this report to a client or collaborator."
+    ]),
+    el("div", { class:"card" }, [
+      el("h2", {}, ["Backlinks by source domain"]),
+      backlinksByDomain(STATE.backlinks).length ? el("table", {}, [
+        el("thead", {}, [el("tr", {}, [th("Domain"),th("Links")])]),
+        el("tbody", {}, backlinksByDomain(STATE.backlinks).map(function(d){
+          return el("tr", {}, [td(d.domain), td(String(d.count))]);
+        }))
+      ]) : el("div", { class:"empty" }, ["No backlinks logged yet."])
+    ])
+  ]);
+}
+
+/* ---------------------------------------------------------------- MODALS */
+function showModal(){
+  var bg = el("div", { class:"modal-bg" + (MODAL_OPEN ? " open" : "") }, []);
+  if(MODAL_OPEN === "keyword") bg.appendChild(keywordModal());
+  else if(MODAL_OPEN === "rank") bg.appendChild(rankModal());
+  else if(MODAL_OPEN === "checkitem") bg.appendChild(checkItemModal());
+  else if(MODAL_OPEN === "content") bg.appendChild(contentModal());
+  else if(MODAL_OPEN === "backlink") bg.appendChild(backlinkModal());
+  else if(MODAL_OPEN === "competitor") bg.appendChild(competitorModal());
+  bg.addEventListener("click", function(e){ if(e.target === bg){ MODAL_OPEN=false; render(); } });
+  document.getElementById("app").appendChild(bg);
+}
+function field(labelText, inputEl){
+  return el("div", { class:"field" }, [el("label",{},[labelText]), inputEl]);
+}
+function closeModalBtn(){
+  return el("button", { class:"btn ghost", onclick:function(){ MODAL_OPEN=false; render(); } }, ["Cancel"]);
+}
+
+function keywordModal(){
+  var existing = EDIT_ID ? keywordById(STATE.keywords, EDIT_ID) : null;
+  var draft = existing ? Object.assign({}, existing) : { id:uid(), keyword:"", targetPage:"", category:"Product", priority:"Medium", status:"Researching", volume:0, difficulty:0, notes:"" };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, [existing ? "Edit keyword" : "Add keyword"]),
+    field("Keyword", el("input",{value:draft.keyword, oninput:function(e){draft.keyword=e.target.value;}})),
+    field("Target page / URL", el("input",{value:draft.targetPage, oninput:function(e){draft.targetPage=e.target.value;}})),
+    el("div", { class:"formgrid" }, [
+      field("Priority", el("select",{onchange:function(e){draft.priority=e.target.value;}}, ["High","Medium","Low"].map(function(p){ return el("option",{value:p, selected:draft.priority===p?"selected":undefined},[p]); }))),
+      field("Status", el("select",{onchange:function(e){draft.status=e.target.value;}}, ["Researching","Mapped","Writing","Published"].map(function(s){ return el("option",{value:s, selected:draft.status===s?"selected":undefined},[s]); })))
+    ]),
+    el("div", { class:"formgrid" }, [
+      field("Search volume (optional)", el("input",{type:"number", value:draft.volume, oninput:function(e){draft.volume=Number(e.target.value)||0;}})),
+      field("Difficulty (optional)", el("input",{type:"number", value:draft.difficulty, oninput:function(e){draft.difficulty=Number(e.target.value)||0;}}))
+    ]),
+    field("Notes", el("textarea",{rows:2, oninput:function(e){draft.notes=e.target.value;}}, [draft.notes])),
+    el("div", { class:"row" }, [
+      existing ? el("button", { class:"btn ghost", onclick:function(){ STATE.keywords = STATE.keywords.filter(function(k){return k.id!==existing.id;}); MODAL_OPEN=false; render(); } }, ["Delete"]) : el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.keyword) return;
+        if(existing){ STATE.keywords = STATE.keywords.map(function(k){ return k.id===existing.id ? draft : k; }); }
+        else{ if(demoLimitReached()) return; STATE.keywords.push(draft); }
+        save(); MODAL_OPEN=false; render();
+      }},["Save"])])
+    ])
+  ]);
+}
+
+function rankModal(){
+  var existing = EDIT_ID ? STATE.rankEntries.filter(function(r){return r.id===EDIT_ID;})[0] : null;
+  var draft = existing ? Object.assign({}, existing) : { id:uid(), keywordId:(STATE.keywords[0]?STATE.keywords[0].id:""), date:todayISO(), rank:50 };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, [existing ? "Edit rank check" : "Log rank check"]),
+    field("Keyword", el("select",{onchange:function(e){draft.keywordId=e.target.value;}}, STATE.keywords.map(function(k){ return el("option",{value:k.id, selected:draft.keywordId===k.id?"selected":undefined},[k.keyword]); }))),
+    el("div", { class:"formgrid" }, [
+      field("Date", el("input",{type:"date", value:draft.date, oninput:function(e){draft.date=e.target.value;}})),
+      field("Rank position", el("input",{type:"number", min:1, value:draft.rank, oninput:function(e){draft.rank=Number(e.target.value)||0;}}))
+    ]),
+    el("div", { class:"row" }, [
+      existing ? el("button", { class:"btn ghost", onclick:function(){ STATE.rankEntries = STATE.rankEntries.filter(function(r){return r.id!==existing.id;}); MODAL_OPEN=false; render(); } }, ["Delete"]) : el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.keywordId) return;
+        if(existing){ STATE.rankEntries = STATE.rankEntries.map(function(r){ return r.id===existing.id ? draft : r; }); }
+        else{ STATE.rankEntries.push(draft); }
+        save(); MODAL_OPEN=false; render();
+      }},["Save"])])
+    ])
+  ]);
+}
+
+function checkItemModal(){
+  var draft = { id:uid(), category:"Technical", text:"", done:false, custom:true };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, ["Add custom checklist item"]),
+    field("Category", el("select",{onchange:function(e){draft.category=e.target.value;}}, CHECKLIST_CATEGORIES.map(function(c){ return el("option",{value:c},[c]); }))),
+    field("Item text", el("input",{value:draft.text, oninput:function(e){draft.text=e.target.value;}})),
+    el("div", { class:"row" }, [
+      el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.text) return;
+        STATE.checklist.push(draft); save(); MODAL_OPEN=false; render();
+      }},["Add"])])
+    ])
+  ]);
+}
+
+function contentModal(){
+  var existing = EDIT_ID ? STATE.content.filter(function(c){return c.id===EDIT_ID;})[0] : null;
+  var draft = existing ? Object.assign({}, existing) : { id:uid(), title:"", keywordId:(STATE.keywords[0]?STATE.keywords[0].id:""), status:"idea", publishDate:todayISO(), notes:"" };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, [existing ? "Edit content" : "Add content"]),
+    field("Title", el("input",{value:draft.title, oninput:function(e){draft.title=e.target.value;}})),
+    field("Target keyword", el("select",{onchange:function(e){draft.keywordId=e.target.value;}}, STATE.keywords.map(function(k){ return el("option",{value:k.id, selected:draft.keywordId===k.id?"selected":undefined},[k.keyword]); }))),
+    el("div", { class:"formgrid" }, [
+      field("Status", el("select",{onchange:function(e){draft.status=e.target.value;}}, ["idea","draft","published"].map(function(s){ return el("option",{value:s, selected:draft.status===s?"selected":undefined},[s]); }))),
+      field("Publish date", el("input",{type:"date", value:draft.publishDate, oninput:function(e){draft.publishDate=e.target.value;}}))
+    ]),
+    field("Notes", el("textarea",{rows:2, oninput:function(e){draft.notes=e.target.value;}}, [draft.notes])),
+    el("div", { class:"row" }, [
+      existing ? el("button", { class:"btn ghost", onclick:function(){ STATE.content = STATE.content.filter(function(c){return c.id!==existing.id;}); MODAL_OPEN=false; render(); } }, ["Delete"]) : el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.title) return;
+        if(existing){ STATE.content = STATE.content.map(function(c){ return c.id===existing.id ? draft : c; }); }
+        else{ STATE.content.push(draft); }
+        save(); MODAL_OPEN=false; render();
+      }},["Save"])])
+    ])
+  ]);
+}
+
+function backlinkModal(){
+  var existing = EDIT_ID ? STATE.backlinks.filter(function(b){return b.id===EDIT_ID;})[0] : null;
+  var draft = existing ? Object.assign({}, existing) : { id:uid(), sourceDomain:"", targetUrl:"", anchorText:"", dateAcquired:todayISO(), type:"dofollow", status:"live" };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, [existing ? "Edit backlink" : "Log backlink"]),
+    field("Source domain", el("input",{value:draft.sourceDomain, oninput:function(e){draft.sourceDomain=e.target.value;}})),
+    field("Target URL", el("input",{value:draft.targetUrl, oninput:function(e){draft.targetUrl=e.target.value;}})),
+    field("Anchor text", el("input",{value:draft.anchorText, oninput:function(e){draft.anchorText=e.target.value;}})),
+    el("div", { class:"formgrid" }, [
+      field("Date acquired", el("input",{type:"date", value:draft.dateAcquired, oninput:function(e){draft.dateAcquired=e.target.value;}})),
+      field("Type", el("select",{onchange:function(e){draft.type=e.target.value;}}, ["dofollow","nofollow"].map(function(t){ return el("option",{value:t, selected:draft.type===t?"selected":undefined},[t]); })))
+    ]),
+    field("Status", el("select",{onchange:function(e){draft.status=e.target.value;}}, ["live","lost"].map(function(s){ return el("option",{value:s, selected:draft.status===s?"selected":undefined},[s]); }))),
+    el("div", { class:"row" }, [
+      existing ? el("button", { class:"btn ghost", onclick:function(){ STATE.backlinks = STATE.backlinks.filter(function(b){return b.id!==existing.id;}); MODAL_OPEN=false; render(); } }, ["Delete"]) : el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.sourceDomain) return;
+        if(existing){ STATE.backlinks = STATE.backlinks.map(function(b){ return b.id===existing.id ? draft : b; }); }
+        else{ STATE.backlinks.push(draft); }
+        save(); MODAL_OPEN=false; render();
+      }},["Save"])])
+    ])
+  ]);
+}
+
+function competitorModal(){
+  var existing = EDIT_ID ? STATE.competitors.filter(function(c){return c.id===EDIT_ID;})[0] : null;
+  var draft = existing ? Object.assign({}, existing) : { id:uid(), domain:"", keywordId:(STATE.keywords[0]?STATE.keywords[0].id:""), theirRank:1, notes:"" };
+  return el("div", { class:"modal" }, [
+    el("h3", {}, [existing ? "Edit competitor" : "Add competitor"]),
+    field("Competitor domain / shop", el("input",{value:draft.domain, oninput:function(e){draft.domain=e.target.value;}})),
+    field("Keyword", el("select",{onchange:function(e){draft.keywordId=e.target.value;}}, STATE.keywords.map(function(k){ return el("option",{value:k.id, selected:draft.keywordId===k.id?"selected":undefined},[k.keyword]); }))),
+    field("Their rank", el("input",{type:"number", min:1, value:draft.theirRank, oninput:function(e){draft.theirRank=Number(e.target.value)||0;}})),
+    field("Notes", el("textarea",{rows:2, oninput:function(e){draft.notes=e.target.value;}}, [draft.notes])),
+    el("div", { class:"row" }, [
+      existing ? el("button", { class:"btn ghost", onclick:function(){ STATE.competitors = STATE.competitors.filter(function(c){return c.id!==existing.id;}); MODAL_OPEN=false; render(); } }, ["Delete"]) : el("span",{},[]),
+      el("div", {}, [closeModalBtn(), " ", el("button",{class:"btn", onclick:function(){
+        if(!draft.domain) return;
+        if(existing){ STATE.competitors = STATE.competitors.map(function(c){ return c.id===existing.id ? draft : c; }); }
+        else{ STATE.competitors.push(draft); }
+        save(); MODAL_OPEN=false; render();
+      }},["Save"])])
+    ])
+  ]);
+}
+
+render();
+})();
+</script>
+</body>
+</html>
